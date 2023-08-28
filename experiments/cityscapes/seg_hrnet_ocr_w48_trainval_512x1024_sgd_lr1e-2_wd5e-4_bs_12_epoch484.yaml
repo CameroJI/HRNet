@@ -11,8 +11,8 @@ PRINT_FREQ: 100
 DATASET:
   DATASET: cityscapes
   ROOT: content/cityscapes
-  TEST_SET: 'content/HRNet/data/list/cityscapes/val.lst'
-  TRAIN_SET: 'content/HRNet/data/list/cityscapes/trainval.lst'
+  TEST_SET: '/content/HRNet/data/list/cityscapes/val.lst'
+  TRAIN_SET: '/content/HRNet/data/list/cityscapes/trainval.lst'
   NUM_CLASSES: 13
 MODEL:
   NAME: seg_hrnet_ocr
