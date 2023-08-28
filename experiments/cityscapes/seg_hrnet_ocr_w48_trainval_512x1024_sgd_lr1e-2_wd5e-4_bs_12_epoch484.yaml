@@ -2,22 +2,22 @@ CUDNN:
   BENCHMARK: true
   DETERMINISTIC: false
   ENABLED: true
-GPUS: (0,1,2,3)
+GPUS: (0,)
 OUTPUT_DIR: 'output'
 LOG_DIR: 'log'
 WORKERS: 4
-PRINT_FREQ: 10
+PRINT_FREQ: 100
 
 DATASET:
   DATASET: cityscapes
-  ROOT: data/
-  TEST_SET: 'list/cityscapes/val.lst'
-  TRAIN_SET: 'list/cityscapes/trainval.lst'
-  NUM_CLASSES: 19
+  ROOT: content/cityscapes
+  TEST_SET: '/content/HRNet/data/list/cityscapes/val.lst'
+  TRAIN_SET: '/content/HRNet/data/list/cityscapes/trainval.lstt'
+  NUM_CLASSES: 13
 MODEL:
   NAME: seg_hrnet_ocr
   NUM_OUTPUTS: 2
-  PRETRAINED: "pretrained_models/hrnetv2_w48_imagenet_pretrained.pth"
+  PRETRAINED: /content/gdrive/MyDrive/HRNet/hrnetv2_w48_imagenet_pretrained.pth
   EXTRA:
     FINAL_CONV_KERNEL: 1
     STAGE1:
@@ -75,10 +75,10 @@ LOSS:
   BALANCE_WEIGHTS: [0.4, 1]
 TRAIN:
   IMAGE_SIZE:
-  - 1024
-  - 512
+  - 854
+  - 480
   BASE_SIZE: 2048
-  BATCH_SIZE_PER_GPU: 3
+  BATCH_SIZE_PER_GPU: 4
   SHUFFLE: true
   BEGIN_EPOCH: 0
   END_EPOCH: 484
@@ -95,8 +95,8 @@ TRAIN:
   SCALE_FACTOR: 16
 TEST:
   IMAGE_SIZE:
-  - 2048
-  - 1024
+  - 854
+  - 480
   BASE_SIZE: 2048
   BATCH_SIZE_PER_GPU: 4
   FLIP_TEST: false
