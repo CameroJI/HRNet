@@ -272,7 +272,7 @@ def main():
     
     for epoch in range(last_epoch, end_epoch):
         
-        print(config.DATASET.NUM_CLASSES)
+        num_classes = config.DATASET.NUM_CLASSES)
         current_trainloader = extra_trainloader if epoch >= config.TRAIN.END_EPOCH else trainloader
         if current_trainloader.sampler is not None and hasattr(current_trainloader.sampler, 'set_epoch'):
             current_trainloader.sampler.set_epoch(epoch)
@@ -311,7 +311,7 @@ def main():
         sheet.cell(row = epoch + 2, column = 2).value = valid_loss
         sheet.cell(row = epoch + 2, column = 3).value = mean_IoU
         for class_num in range(num_classes):
-            if not np.isnan(val_score['Class IoU'][class_num]):
+            if not np.isnan(IoU_array[class_num]):
                 sheet.cell(row = epoch + 2, column = 3 + (class_num + 1)).value = IoU_array[class_num]
             else:
                 sheet.cell(row = epoch + 2, column = 3 + (class_num + 1)).value = 0
