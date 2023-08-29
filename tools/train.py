@@ -293,7 +293,7 @@ def main():
         valid_loss, mean_IoU, IoU_array = validate(config, 
                     testloader, model, writer_dict)
         
-        dataPath = '/content/gdrive/MyDrive/trainData.xlsx'
+        dataPath = '/content/gdrive/MyDrive/HRNet/trainData.xlsx'
         if not os.path.exists(dataPath):
             wb = Workbook()
             sheet = wb.active
