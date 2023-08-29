@@ -271,6 +271,7 @@ def main():
     extra_iters = config.TRAIN.EXTRA_EPOCH * extra_epoch_iters
     
     for epoch in range(last_epoch, end_epoch):
+        
         print(config.DATASET.NUM_CLASSES)
         current_trainloader = extra_trainloader if epoch >= config.TRAIN.END_EPOCH else trainloader
         if current_trainloader.sampler is not None and hasattr(current_trainloader.sampler, 'set_epoch'):
