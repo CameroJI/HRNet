@@ -12,7 +12,7 @@ DATASET:
   DATASET: cityscapes
   ROOT: content/cityscapes
   TEST_SET: '/content/HRNet/data/list/cityscapes/val.lst'
-  TRAIN_SET: '/content/HRNet/data/list/cityscapes/trainval.lst'
+  TRAIN_SET: '/content/HRNet/data/list/cityscapes/train.lst'
   NUM_CLASSES: 13
 MODEL:
   NAME: seg_hrnet_ocr
