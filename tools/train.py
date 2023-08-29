@@ -15,6 +15,9 @@ import time
 import timeit
 from pathlib import Path
 
+import openpyxl
+from openpyxl import Workbook
+
 import numpy as np
 
 import torch
@@ -288,6 +291,31 @@ def main():
 
         valid_loss, mean_IoU, IoU_array = validate(config, 
                     testloader, model, writer_dict)
+        
+        dataPath = '/content/gdrive/MyDrive/trainData.xlsx'
+        if not os.path.exists(dataPath):
+            wb = Workbook()
+            sheet = wb.active
+            sheet.title = "Hoja1"
+            sheet.cell(row = 1, column = 1).value = 'Epoch'
+            sheet.cell(row = 1, column = 2).value = 'Loss'
+            sheet.cell(row = 1, column = 3).value = 'Mean IoU'
+            for class_num in range(num_classes):
+                sheet.cell(row = 1, column = 3 + (class_num + 1)).value = f'Class {class_num}'
+            wb.save(dataPath)
+
+        dataFile = openpyxl.load_workbook(dataPath)
+        sheet = dataFile["Hoja1"]
+        sheet.cell(row = epoch + 2, column = 1).value = epoch + 1
+        sheet.cell(row = epoch + 2, column = 2).value = valid_loss
+        sheet.cell(row = epoch + 2, column = 3).value = mean_IoU
+        for class_num in range(num_classes):
+            if not np.isnan(val_score['Class IoU'][class_num]):
+                sheet.cell(row = epoch + 2, column = 3 + (class_num + 1)).value = IoU_array[class_num]
+            else:
+                sheet.cell(row = epoch + 2, column = 3 + (class_num + 1)).value = 0
+                    
+        dataFile.save(dataPath)
 
         if args.local_rank <= 0:
             logger.info('=> saving checkpoint to {}'.format(
