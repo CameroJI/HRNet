@@ -8,10 +8,6 @@ import logging
 import os
 import time
 
-
-import openpyxl
-from openpyxl import Workbook
-
 import numpy as np
 import numpy.ma as ma
 from tqdm import tqdm
