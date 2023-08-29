@@ -98,7 +98,10 @@ class Cityscapes(BaseDataset):
         #                    cv2.IMREAD_COLOR)
         image = cv2.imread(os.path.join(self.root, item["img"]),
                            cv2.IMREAD_COLOR)
-        size = image.shape
+        try:
+            size = image.shape
+        except:
+            print(f'{self.root}/{item["img"]}')
 
         if 'test' in self.list_path:
             image = self.input_transform(image)
