@@ -46,8 +46,10 @@ class Cityscapes(BaseDataset):
         self.files = self.read_files()
         if num_samples:
             self.files = self.files[:num_samples]
-
-        self.label_mapping = {0: 0,#ignore_label, 
+            
+        #0: ignore_label
+                     
+        self.label_mapping = {0: 0,
                               1: 1, 2: 2, 
                               3: 3, 4: 4, 
                               5: 5, 6: 6, 
@@ -56,8 +58,7 @@ class Cityscapes(BaseDataset):
                      
         self.class_weights = torch.FloatTensor([0.8373, 0.918, 0.866, 1.0345, 
                                         1.0166, 0.9969, 0.9754, 1.0489,
-                                        0.8786, 1.0023, 0.9539, 0.9843, 
-                                        1.1116]).cuda()
+                                        0.8786, 1.0023, 0.9539, 0.9843]).cuda()
     
     def read_files(self):
         files = []
